@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+!.env.example
+secrets/
+outputs/
+authoring/
+*.log
+*.tar.gz
+.openai/
+tmp/
+*.zip
