@@ -1,1 +1,12 @@
-{"name":"malbom","private":true,"type":"module","engines":{"node":">=22"},"scripts":{"start":"node scripts/preview.mjs","test":"node --test apps-script/*.test.cjs && node check.cjs"}}
+{
+  "name": "malbom",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/preview.mjs",
+    "test": "node --test apps-script/*.test.cjs tests/*.test.cjs && node check.cjs"
+  }
+}
