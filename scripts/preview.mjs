@@ -1,6 +1,6 @@
 import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
-const files={'/':['index.html','text/html'],'/index.html':['index.html','text/html'],'/style.css':['style.css','text/css'],'/patient.css':['patient.css','text/css'],'/content.js':['content.js','text/javascript'],'/practice.js':['practice.js','text/javascript'],'/boot.js':['boot.js','text/javascript'],'/app.js':['app.js','text/javascript'],'/config.js':['config.js','text/javascript'],'/sheets-bridge.js':['sheets-bridge.js','text/javascript']};
+const files={'/':['index.html','text/html'],'/index.html':['index.html','text/html'],'/style.css':['style.css','text/css'],'/patient.css':['patient.css','text/css'],'/content.js':['content.js','text/javascript'],'/journey.js':['journey.js','text/javascript'],'/practice.js':['practice.js','text/javascript'],'/boot.js':['boot.js','text/javascript'],'/app.js':['app.js','text/javascript'],'/config.js':['config.js','text/javascript'],'/sheets-bridge.js':['sheets-bridge.js','text/javascript']};
 // 로컬 화면 검토 시에만 사용한다. dist에는 예시 로그인이나 계정 우회 코드가 없다.
 if(process.env.MALBOM_QA==='1'){files['/__qa']=['../tmp/patient-demo.html','text/html'];files['/__qa-session.js']=['../tmp/qa-session.js','text/javascript'];}
 const server=createServer(async(req,res)=>{

@@ -5,12 +5,12 @@ const context={console,Date,Set,Map,Math,JSON,String,Array,Blob,URL,crypto:requi
 context.window.MalbomSheets={request:async(path,options={})=>{const response=await context.fetch(path,options);const data=await response.json();if(!response.ok)throw new Error(data.error);return data;},clear(){}};
 vm.createContext(context);
 (async()=>{
-  vm.runInContext(fs.readFileSync('dist/content.js','utf8'),context);vm.runInContext(fs.readFileSync('dist/app.js','utf8'),context);vm.runInContext(fs.readFileSync('dist/practice.js','utf8'),context);await vm.runInContext('checkSession()',context);
+  vm.runInContext(fs.readFileSync('dist/content.js','utf8'),context);vm.runInContext(fs.readFileSync('dist/journey.js','utf8'),context);vm.runInContext(fs.readFileSync('dist/app.js','utf8'),context);vm.runInContext(fs.readFileSync('dist/practice.js','utf8'),context);await vm.runInContext('checkSession()',context);
   assert.match(el('#content').innerHTML,/type="password"/);assert(!el('#content').innerHTML.includes('나의 훈련 기록'));
   const catalog=JSON.parse(fs.readFileSync('apps-script/catalog.json','utf8'));assert.equal(vm.runInContext('JSON.stringify(types.map(({short,items})=>({short,items})))',context),JSON.stringify(catalog));
   await vm.runInContext(`(async()=>{
   profile={id:'u',name:'테스트'};render();
-  if(!home().includes('오늘의 연습 시작')||!home().includes('다시 연습하기'))throw Error('patient home');
+  if(!home().includes('오늘의 학습 시작')||!home().includes('다시 연습하기'))throw Error('patient home');
   const plan=planForUser(),queue=queueForPlan(plan);if(queue.length!==7||queue.map(q=>q.type).join(',')!=='0,0,1,1,1,2,2')throw Error('default sequence');
   if(!report().includes('첫 번째 연습'))throw Error('empty report');
   for(let i=0;i<4;i++){setupPractice([{type:i,index:0}],'review');if(!training().includes(types[i].items[0]))throw Error('training content');}
