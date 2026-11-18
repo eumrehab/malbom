@@ -10,7 +10,7 @@ vm.createContext(context);
   const catalog=JSON.parse(fs.readFileSync('apps-script/catalog.json','utf8'));assert.equal(vm.runInContext('JSON.stringify(types.map(({short,items})=>({short,items})))',context),JSON.stringify(catalog));
   await vm.runInContext(`(async()=>{
   profile={id:'u',name:'테스트'};render();
-  if(!home().includes('오늘의 학습 시작')||!home().includes('다시 연습하기'))throw Error('patient home');
+  if(!home().includes('chooseToday')||!home().includes('choosePractice')||!dailyPage().includes('오늘의 학습 시작'))throw Error('patient home');
   const plan=planForUser(),queue=queueForPlan(plan);if(queue.length!==7||queue.map(q=>q.type).join(',')!=='0,0,1,1,1,2,2')throw Error('default sequence');
   if(!report().includes('첫 번째 연습'))throw Error('empty report');
   for(let i=0;i<4;i++){setupPractice([{type:i,index:0}],'review');if(!training().includes(types[i].items[0]))throw Error('training content');}
